@@ -1,5 +1,4 @@
 # modsecurity-sbrs
-ModSecurity Score-Based Rule Set (SBRS)
 
 The ModSecurity Score-Based Rule Set (SBRS) is a set of application-level attack detection rules for use with ModSecurity.
 
