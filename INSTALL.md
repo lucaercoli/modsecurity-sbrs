@@ -1,7 +1,7 @@
 # How to configure ModSecurity and the SBRS v1 on Debian GNU/Linux with Apache2 web server
 
 ###### Prerequisite: a freshly installed ModSecurity
-###### Note: SBRS ruleset are supported and well tested on ModSecurity 2.9.1 and 2.9.3.
+###### Note: well tested on ModSecurity 2.9.1 and 2.9.3.
 
 
 ## Installation Steps 
