@@ -24,7 +24,7 @@ mkdir /etc/modsecurity/sbrs-rules
 
 ```
 cp modsecurity-sbrs/modsecurity.conf /etc/modsecurity/
-cp modsecurity-sbrs/modsecurity_sbrs.load /etc/modsecurity/sbrs-rules/
+cp modsecurity-sbrs/modsecurity-sbrs.load /etc/modsecurity/sbrs-rules/
 ```
 
 * Step 4: Enable the Score-Based Rule Set (SBRS) by editing the ModSecurity configuration settings in Apache and then “/etc/apache2/mods-enabled/security2.conf”, which can take this form:
