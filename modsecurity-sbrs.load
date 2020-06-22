@@ -248,6 +248,11 @@ SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUE
  t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
  setvar:TX.score=+24"
 
+SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
+ "@contains char(45,120,49,45,81,45)" "phase:2,pass,id:77047 \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ setvar:TX.score=+24"
+ 
 SecRule REQUEST_URI "admin\/(edittemplate|fetch_data_af.php\?action=create_txt_file_from_af_table|theme-options\/|upgrade.php\?)|administrator/index\.php\?option=com_rsform|/imp/compose\.php|/index\.php\?(controller=admintranslations|mode=install&sub=create_table|name=pnphpbb2&file=posting&mode)|/install/index\.php|mysqldumper\/dump.php|/phpmyadmin/|/secure_admin/categories\.php|/sql\.php|jomsocial\/[a-z0-9]+\/(edit|add)|modules\.php\?name=forums&file=posting|phpbb3?\/install\/|/tbl_(addfield|change|create|find_replace|get_field|replace|select|sql|structure)\.php|/ubbthreads/install/|/wiki/index\.php?.*action=submit|\/wp-admin\/(admin|admin-post|edit|edit-tags|nav-menus|network\/site-settings|options-general|options-permalink|options|plugin-editor|plugin-install|post|press-this|theme-editor|theme-install|themes|tools|user-edit).php" \
  "t:none,t:lowercase,pass,nolog,id:666666,skipAfter:END_OF_FPP"
 
