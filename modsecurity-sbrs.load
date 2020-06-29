@@ -2,7 +2,7 @@
 # 
 #  Date:        26 June 2020
 #  Info:        ModSecurity Score-Based Rule Set (SBRS) 
-#  Version:     1.2.1
+#  Version:     1.2
 #  Source Code: https://github.com/lucaercoli/modsecurity-sbrs/ 
 #  Author:      Luca Ercoli https://lucaercoli.it/
 #  Contact:     mailto: <luca [at] lucaercoli.it>
@@ -158,15 +158,15 @@ SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUE
  t:compressWhitespace \
  setvar:TX.score=+8"
 
-#SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
-# "@rx \\\u0{2,6}36" "phase:2,pass,id:67029 \
-# t:none,t:compressWhitespace \
-# setvar:TX.score=+8"
+SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
+ "@rx \\\u0{2,6}36" "phase:2,pass,id:67029 \
+ t:none,t:compressWhitespace \
+ setvar:TX.score=+8"
 
-#SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
-# "@rx %u0{2,6}36" "phase:2,pass,id:67030 \
-# t:none,t:compressWhitespace \
-# setvar:TX.score=+8"
+SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
+ "@rx %u0{2,6}36" "phase:2,pass,id:67030 \
+ t:none,t:compressWhitespace \
+ setvar:TX.score=+8"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
  "@contains %uff0e" "phase:2,pass,id:67061 \
@@ -263,15 +263,15 @@ SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUE
  t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
  setvar:TX.score=+3"
 
-#SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
-# "@rx %u0{2,6}2[0|8|9|d]" "phase:2,pass,id:77050 \
-# t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
-# setvar:TX.score=+8"
+SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
+ "@rx %u0{2,6}2[0|8|9|d]" "phase:2,pass,id:77050 \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ setvar:TX.score=+8"
 
-#SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
-# "@rx \\\u0{2,6}2[0|8|9|d]" "phase:2,pass,id:77051 \
-# t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
-# setvar:TX.score=+8"
+SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
+ "@rx \\\u0{2,6}2[0|8|9|d]" "phase:2,pass,id:77051 \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ setvar:TX.score=+8"
  
 SecRule REQUEST_URI "admin\/(edittemplate|fetch_data_af.php\?action=create_txt_file_from_af_table|theme-options\/|upgrade.php\?)|administrator/index\.php\?option=com_rsform|/imp/compose\.php|/index\.php\?(controller=admintranslations|mode=install&sub=create_table|name=pnphpbb2&file=posting&mode)|/install/index\.php|mysqldumper\/dump.php|/phpmyadmin/|/secure_admin/categories\.php|/sql\.php|jomsocial\/[a-z0-9]+\/(edit|add)|modules\.php\?name=forums&file=posting|phpbb3?\/install\/|/tbl_(addfield|change|create|find_replace|get_field|replace|select|sql|structure)\.php|/ubbthreads/install/|/wiki/index\.php?.*action=submit|\/wp-admin\/(admin|admin-post|edit|edit-tags|nav-menus|network\/site-settings|options-general|options-permalink|options|plugin-editor|plugin-install|post|press-this|theme-editor|theme-install|themes|tools|user-edit).php" \
  "t:none,t:lowercase,pass,nolog,id:666666,skipAfter:END_OF_FPP"
