@@ -370,6 +370,21 @@ SecMarker END_OF_FPP
 
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
+ "@rx <[\s]{0,1}script[\s]{0,1}>[\s]{0,1}(alert|prompt|confirm)[\s]{0,1}\([a-zA-Z0-9\.]{0,17}\)[;]?<[\/]?[\s]{0,1}script[\s]{0,1}>" "phase:2,pass,id:97000 \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ setvar:TX.score=+24"
+
+SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
+ "@rx <[\s]{0,1}img[\s]{1,3}src\=.{0,5}onerror\=(alert|prompt|confirm)\(.{0,17}\)[\/]?>" "phase:2,pass,id:97001 \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ setvar:TX.score=+24"
+
+SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
+ "@rx <[\s]{0,1}svg[\s|\/]onload=(alert|prompt|confirm)\(.{0,17}\);?(\/\/)?[\s]{0,1}>" "phase:2,pass,id:97002 \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ setvar:TX.score=+24"
+
+SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
  "@rx (sftp|zlib):\/\/[\d|\D|\w|\W|\s|\S]{0,256}\/[\d|\D|\w|\W|\s|\S]{0,256}\.(php|txt|sh|pl|py|bin|exe|bat|scr|vbs|html?)" "phase:2,pass,id:77000 \
  t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
  setvar:TX.score=+24"
