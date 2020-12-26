@@ -1,8 +1,8 @@
 #
 # 
-#  Date:        26 June 2020
+#  Date:        26 Dec 2020
 #  Info:        ModSecurity Score-Based Rule Set (SBRS) 
-#  Version:     1.2
+#  Version:     1.3
 #  Source Code: https://github.com/lucaercoli/modsecurity-sbrs/ 
 #  Author:      Luca Ercoli https://lucaercoli.it/
 #  Contact:     mailto: <luca [at] lucaercoli.it>
