@@ -44,6 +44,13 @@ service apache2 restart
 ```
 
 
+## Configuration exceptions 
+
+- ModSecurity 3 with NGINX does not support "SecDisableBackendCompression" directive (https://github.com/SpiderLabs/ModSecurity/issues/1516) 
+
+- Support for the "SecDisableBackendCompression" directive has been removed from ModSecurity 3
+
+If you are using these versions of the software, edit the /etc/modsecurity/modsecurity.conf file appropriately
 
 
 
