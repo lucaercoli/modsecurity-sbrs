@@ -1,8 +1,8 @@
 #
 # 
-#  Date:        26 Dec 2020
+#  Date:        27 Apr 2021
 #  Info:        ModSecurity Score-Based Rule Set (SBRS) 
-#  Version:     1.3
+#  Version:     1.4
 #  Source Code: https://github.com/lucaercoli/modsecurity-sbrs/ 
 #  Author:      Luca Ercoli https://lucaercoli.it/
 #  Contact:     mailto: <luca [at] lucaercoli.it>
@@ -29,276 +29,276 @@ SecPcreMatchLimitRecursion 100000
 #
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains union all select" "phase:2,pass,id:67000 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains union all select" "phase:2,pass,id:67000, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+12"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains information_schema.plugins" "phase:2,pass,id:67001 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains information_schema.plugins" "phase:2,pass,id:67001, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+12"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains information_schema.tables" "phase:2,pass,id:67002 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains information_schema.tables" "phase:2,pass,id:67002, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+12"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains information_schema.columns" "phase:2,pass,id:67003 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains information_schema.columns" "phase:2,pass,id:67003, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+12"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains information_schema.schemata" "phase:2,pass,id:67004 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains information_schema.schemata" "phase:2,pass,id:67004, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+12"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains %u%n%i%o%n %a%l%l %s%e%l%e%c%t" "phase:2,pass,id:67005 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains %u%n%i%o%n %a%l%l %s%e%l%e%c%t" "phase:2,pass,id:67005, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains %s%e%l%e%c%t" "phase:2,pass,id:67006 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains %s%e%l%e%c%t" "phase:2,pass,id:67006, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+12"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains mysql.user" "phase:2,pass,id:67007 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains mysql.user" "phase:2,pass,id:67007, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+16"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx load_file[\d|\D|\w|\W|\s|\S]{0,16}\([\"|\'][\d|\D|\w|\W|\s|\S]{0,256}[\"|\']\)" "phase:2,pass,id:67008 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx load_file[\d|\D|\w|\W|\s|\S]{0,16}\([\"|\'][\d|\D|\w|\W|\s|\S]{0,256}[\"|\']\)" "phase:2,pass,id:67008, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+8"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains users.password" "phase:2,pass,id:67009 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains users.password" "phase:2,pass,id:67009, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+8"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains %u%n%i%o%n" "phase:2,pass,id:67010 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains %u%n%i%o%n" "phase:2,pass,id:67010, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+12"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains select(sleep" "phase:2,pass,id:67013 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains select(sleep" "phase:2,pass,id:67013, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains select count(*)" "phase:2,pass,id:67014 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains select count(*)" "phase:2,pass,id:67014, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains (select--" "phase:2,pass,id:67015 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains (select--" "phase:2,pass,id:67015, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains (select (case" "phase:2,pass,id:67016 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains (select (case" "phase:2,pass,id:67016, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains (select concat(" "phase:2,pass,id:67017 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains (select concat(" "phase:2,pass,id:67017, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains @@version" "phase:2,pass,id:67018 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains @@version" "phase:2,pass,id:67018, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+11"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains version()" "phase:2,pass,id:67019 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains version()" "phase:2,pass,id:67019, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+11"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains @@datadir" "phase:2,pass,id:67020 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains @@datadir" "phase:2,pass,id:67020, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+11"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains schema_name" "phase:2,pass,id:67021 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains schema_name" "phase:2,pass,id:67021, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+8"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains sp_password" "phase:2,pass,id:67023 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains sp_password" "phase:2,pass,id:67023, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+8"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains --%20" "phase:2,pass,id:67024 \
- t:lowercase,t:compressWhitespace,t:removeNulls \
+ "@contains --%20" "phase:2,pass,id:67024, \
+ t:lowercase,t:compressWhitespace,t:removeNulls, \
  setvar:TX.score=+8"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains /*" "phase:2,pass,id:67025 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains /*" "phase:2,pass,id:67025, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+4"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains */" "phase:2,pass,id:67026 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains */" "phase:2,pass,id:67026, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+4"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains &#32;" "phase:2,pass,id:67027 \
- t:compressWhitespace \
+ "@contains &#32;" "phase:2,pass,id:67027, \
+ t:compressWhitespace, \
  setvar:TX.score=+8"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains &#61;" "phase:2,pass,id:67028 \
- t:compressWhitespace \
+ "@contains &#61;" "phase:2,pass,id:67028, \
+ t:compressWhitespace, \
  setvar:TX.score=+8"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx \\\u0{2,6}36" "phase:2,pass,id:67029 \
- t:none,t:compressWhitespace \
+ "@rx \\\u0{2,6}36" "phase:2,pass,id:67029, \
+ t:none,t:compressWhitespace, \
  setvar:TX.score=+8"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx %u0{2,6}36" "phase:2,pass,id:67030 \
- t:none,t:compressWhitespace \
+ "@rx %u0{2,6}36" "phase:2,pass,id:67030, \
+ t:none,t:compressWhitespace, \
  setvar:TX.score=+8"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains %uff0e" "phase:2,pass,id:67061 \
- t:none,t:compressWhitespace \
+ "@contains %uff0e" "phase:2,pass,id:67061, \
+ t:none,t:compressWhitespace, \
  setvar:TX.score=+6"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains char(113)" "phase:2,pass,id:67031 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains char(113)" "phase:2,pass,id:67031, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+6"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains %n%u%l%l" "phase:2,pass,id:67032 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains %n%u%l%l" "phase:2,pass,id:67032, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+6"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains char%c0%a8113%c0%a9%c0%ab" "phase:2,pass,id:67033 \
- t:none,t:lowercase \
+ "@contains char%c0%a8113%c0%a9%c0%ab" "phase:2,pass,id:67033, \
+ t:none,t:lowercase, \
  setvar:TX.score=+12"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains upper(xmltype(" "phase:2,pass,id:67034 \
- t:lowercase \
+ "@contains upper(xmltype(" "phase:2,pass,id:67034, \
+ t:lowercase, \
  setvar:TX.score=+6"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains dbms_pipe.receive_message(" "phase:2,pass,id:67035 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains dbms_pipe.receive_message(" "phase:2,pass,id:67035, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+12"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains ;select dbms_pipe.receive_message(" "phase:2,pass,id:67036 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains ;select dbms_pipe.receive_message(" "phase:2,pass,id:67036, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains dbms_pipe.receive_message" "phase:2,pass,id:67952 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains dbms_pipe.receive_message" "phase:2,pass,id:67952, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx order by[\d|\D|\w|\W|\s|\S]{2,7}\-\-" "phase:2,pass,id:67953 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx order by[\d|\D|\w|\W|\s|\S]{2,7}\-\-" "phase:2,pass,id:67953, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains pg_sleep(" "phase:2,pass,id:67037 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains pg_sleep(" "phase:2,pass,id:67037, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+12"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains pg_sleep&#40;" "phase:2,pass,id:67038 \
- t:none,t:lowercase \
+ "@contains pg_sleep&#40;" "phase:2,pass,id:67038, \
+ t:none,t:lowercase, \
  setvar:TX.score=+12"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx waitfor.*delay.*(\'|\").*:.*:.*(\'|\")" "phase:2,pass,id:67039 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx waitfor.*delay.*(\'|\").*:.*:.*(\'|\")" "phase:2,pass,id:67039, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx order by.*sp_password" "phase:2,pass,id:67040 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx order by.*sp_password" "phase:2,pass,id:67040, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx (\'|\))[\d|\D|\w|\W|\s|\S]{0,64}order by.*--" "phase:2,pass,id:67043 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx (\'|\))[\d|\D|\w|\W|\s|\S]{0,64}order by.*--" "phase:2,pass,id:67043, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx (\'|\))[\d|\D|\w|\W|\s|\S]{0,64}order by.*#" "phase:2,pass,id:67044 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx (\'|\))[\d|\D|\w|\W|\s|\S]{0,64}order by.*#" "phase:2,pass,id:67044, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx select[\d|\D|\w|\W|\s|\S]{0,6}sleep[\d|\D|\w|\W|\s|\S]{0,6}\(" "phase:2,pass,id:77046 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx select[\d|\D|\w|\W|\s|\S]{0,6}sleep[\d|\D|\w|\W|\s|\S]{0,6}\(" "phase:2,pass,id:77046, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains char(45,120,49,45,81,45)" "phase:2,pass,id:77047 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains char(45,120,49,45,81,45)" "phase:2,pass,id:77047, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
  
  SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains ,char(" "phase:2,pass,id:77048 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains ,char(" "phase:2,pass,id:77048, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+10"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx (([,|;|(| |0-9|a|b|c|d|e|f])(concat\())" "phase:2,pass,id:77049 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx (([,|;|(| |0-9|a|b|c|d|e|f])(concat\())" "phase:2,pass,id:77049, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+3"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx %u0{2,6}2[0|8|9|d]" "phase:2,pass,id:77050 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx %u0{2,6}2[0|8|9|d]" "phase:2,pass,id:77050, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+8"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx \\\u0{2,6}2[0|8|9|d]" "phase:2,pass,id:77051 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx \\\u0{2,6}2[0|8|9|d]" "phase:2,pass,id:77051, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+8"
  
 SecRule REQUEST_URI "admin\/(edittemplate|fetch_data_af.php\?action=create_txt_file_from_af_table|theme-options\/|upgrade.php\?)|administrator/index\.php\?option=com_rsform|/imp/compose\.php|/index\.php\?(controller=admintranslations|mode=install&sub=create_table|name=pnphpbb2&file=posting&mode)|/install/index\.php|mysqldumper\/dump.php|/phpmyadmin/|/secure_admin/categories\.php|/sql\.php|jomsocial\/[a-z0-9]+\/(edit|add)|modules\.php\?name=forums&file=posting|phpbb3?\/install\/|/tbl_(addfield|change|create|find_replace|get_field|replace|select|sql|structure)\.php|/ubbthreads/install/|/wiki/index\.php?.*action=submit|\/wp-admin\/(admin|admin-post|edit|edit-tags|nav-menus|network\/site-settings|options-general|options-permalink|options|plugin-editor|plugin-install|post|press-this|theme-editor|theme-install|themes|tools|user-edit).php" \
  "t:none,t:lowercase,pass,nolog,id:666666,skipAfter:END_OF_FPP"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx insert[ |\(|%|&|+|\/|\-|#][\d|\D|\w|\W|\s|\S]{0,33}into[\d|\D|\w|\W|\s|\S]{0,256}values" "phase:2,pass,id:67041 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx insert[ |\(|%|&|+|\/|\-|#][\d|\D|\w|\W|\s|\S]{0,33}into[\d|\D|\w|\W|\s|\S]{0,256}values" "phase:2,pass,id:67041, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx delete[ |\(|%|&|+|\/|\-|#][\d|\D|\w|\W|\s|\S]{0,128}from[\d|\D|\w|\W|\s|\S]{0,128}where" "phase:2,pass,id:67042 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx delete[ |\(|%|&|+|\/|\-|#][\d|\D|\w|\W|\s|\S]{0,128}from[\d|\D|\w|\W|\s|\S]{0,128}where" "phase:2,pass,id:67042, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx update[ |\(|%|&|+|\/|\-|#][\d|\D|\w|\W|\s|\S]{0,128}set[\d|\D|\w|\W|\s|\S]{0,128}where" "phase:2,pass,id:67045 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx update[ |\(|%|&|+|\/|\-|#][\d|\D|\w|\W|\s|\S]{0,128}set[\d|\D|\w|\W|\s|\S]{0,128}where" "phase:2,pass,id:67045, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx delete[ |\(|%|&|+|\/|\-|#][\d|\D|\w|\W|\s|\S]{0,64}\*[\d|\D|\w|\W|\s|\S]{0,128}from" "phase:2,pass,id:67046 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx delete[ |\(|%|&|+|\/|\-|#][\d|\D|\w|\W|\s|\S]{0,64}\*[\d|\D|\w|\W|\s|\S]{0,128}from" "phase:2,pass,id:67046, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx (([\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9|a|b|c|d|e|f]|^)(union[ |\(|%|&|+|\/|\-|#]))" "phase:2,pass,id:67052 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx (([\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9|a|b|c|d|e|f]|^)(union[ |\(|%|&|+|\/|\-|#]))" "phase:2,pass,id:67052, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+11"
 
 SecRule REQUEST_URI "@rx \/wp-comments-post.php$" "id:57053,phase:2,t:none,t:lowercase,pass,chain"
@@ -307,8 +307,8 @@ SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUE
  "t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls,setvar:TX.score=-11"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx (([\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9|a|b|c|d|e|f]|^)(select[ |\(|%|&|+|\/|\-|#]))" "phase:2,pass,id:67054 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx (([\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9|a|b|c|d|e|f]|^)(select[ |\(|%|&|+|\/|\-|#]))" "phase:2,pass,id:67054, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+11"
 
 SecRule REQUEST_URI "@rx \/wp-comments-post.php$" "id:57055,phase:2,t:none,t:lowercase,pass,chain"
@@ -317,38 +317,38 @@ SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUE
  "t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls,setvar:TX.score=-11"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx union[\d|\D|\w|\W|\s|\S]{0,32}(select)" "phase:2,pass,id:67056 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx union[\d|\D|\w|\W|\s|\S]{0,32}(select)" "phase:2,pass,id:67056, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+2"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx union[\d|\D|\w|\W|\s|\S]{0,32}(all)" "phase:2,pass,id:67057 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx union[\d|\D|\w|\W|\s|\S]{0,32}(all)" "phase:2,pass,id:67057, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+2"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx select[\d|\D|\w|\W|\s|\S]{0,32}(from)" "phase:2,pass,id:67058 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx select[\d|\D|\w|\W|\s|\S]{0,32}(from)" "phase:2,pass,id:67058, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+2"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx select[\d|\D|\w|\W|\s|\S]{0,32}(null)" "phase:2,pass,id:67059 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx select[\d|\D|\w|\W|\s|\S]{0,32}(null)" "phase:2,pass,id:67059, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+2"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx drop[ |\(|%|&|+|\/|\-|#][\d|\D|\w|\W|\s|\S]{0,12}database" "phase:2,pass,id:67060 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx drop[ |\(|%|&|+|\/|\-|#][\d|\D|\w|\W|\s|\S]{0,12}database" "phase:2,pass,id:67060, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx drop[ |\(|%|&|+|\/|\-|#][\d|\D|\w|\W|\s|\S]{0,12}table" "phase:2,pass,id:67048 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx drop[ |\(|%|&|+|\/|\-|#][\d|\D|\w|\W|\s|\S]{0,12}table" "phase:2,pass,id:67048, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx truncate[ |\(|%|&|+|\/|\-|#][\d|\D|\w|\W|\s|\S]{0,12}table" "phase:2,pass,id:67049 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx truncate[ |\(|%|&|+|\/|\-|#][\d|\D|\w|\W|\s|\S]{0,12}table" "phase:2,pass,id:67049, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule REQUEST_URI "@rx \/wp\-login\.php$" "id:57116,phase:2,t:none,t:lowercase,pass,chain"
@@ -357,8 +357,8 @@ SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUE
  "t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls,setvar:TX.score=-11"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx (([\t|\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9|a|b|c|d|e|f]|^)((wget|nc|curl)[ |+|%|\{|\$][\d|\D|\w|\W|\s|\S]{0,12}(https?|s?ftps?):\/\/))" "phase:2,pass,id:77037 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx (([\t|\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9|a|b|c|d|e|f]|^)((wget|nc|curl)[ |+|%|\{|\$][\d|\D|\w|\W|\s|\S]{0,12}(https?|s?ftps?):\/\/))" "phase:2,pass,id:77037, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule REQUEST_URI "@rx \/wp-comments-post.php$" "id:57104,phase:2,t:none,t:lowercase,pass,chain"
@@ -370,283 +370,283 @@ SecMarker END_OF_FPP
 
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx <[\s]{0,1}script[\s]{0,1}>[\s]{0,1}(alert|prompt|confirm)[\s]{0,1}\([a-zA-Z0-9\.]{0,17}\)[;]?<[\/]?[\s]{0,1}script[\s]{0,1}>" "phase:2,pass,id:97000 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx <[\s]{0,1}script[\s]{0,1}>[\s]{0,1}(alert|prompt|confirm)[\s]{0,1}\([a-zA-Z0-9\.]{0,17}\)[;]?<[\/]?[\s]{0,1}script[\s]{0,1}>" "phase:2,pass,id:97000, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx <[\s]{0,1}img[\s]{1,3}src\=.{0,5}onerror\=(alert|prompt|confirm)\(.{0,17}\)[\/]?>" "phase:2,pass,id:97001 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx <[\s]{0,1}img[\s]{1,3}src\=.{0,5}onerror\=(alert|prompt|confirm)\(.{0,17}\)[\/]?>" "phase:2,pass,id:97001, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx <[\s]{0,1}svg[\s|\/]onload=(alert|prompt|confirm)\(.{0,17}\);?(\/\/)?[\s]{0,1}>" "phase:2,pass,id:97002 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx <[\s]{0,1}svg[\s|\/]onload=(alert|prompt|confirm)\(.{0,17}\);?(\/\/)?[\s]{0,1}>" "phase:2,pass,id:97002, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx (sftp|zlib):\/\/[\d|\D|\w|\W|\s|\S]{0,256}\/[\d|\D|\w|\W|\s|\S]{0,256}\.(php|txt|sh|pl|py|bin|exe|bat|scr|vbs|html?)" "phase:2,pass,id:77000 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx (sftp|zlib):\/\/[\d|\D|\w|\W|\s|\S]{0,256}\/[\d|\D|\w|\W|\s|\S]{0,256}\.(php|txt|sh|pl|py|bin|exe|bat|scr|vbs|html?)" "phase:2,pass,id:77000, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx ftps?:\/\/[\d|\D|\w|\W|\s|\S]{0,256}\/[\d|\D|\w|\W|\s|\S]{0,256}\.(php|txt|sh|pl|py|bin|exe|bat|scr|vbs|html?)" "phase:2,pass,id:77105 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx ftps?:\/\/[\d|\D|\w|\W|\s|\S]{0,256}\/[\d|\D|\w|\W|\s|\S]{0,256}\.(php|txt|sh|pl|py|bin|exe|bat|scr|vbs|html?)" "phase:2,pass,id:77105, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx (data|glob|phar|file|zip|gopher):\/\/[\d|\D|\w|\W|\s|\S]{0,256}\/[\d|\D|\w|\W|\s|\S]{0,256}\.(php|txt|sh|pl|py|bin|exe|bat|scr|vbs|html?)" "phase:2,pass,id:77106 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx (data|glob|phar|file|zip|gopher):\/\/[\d|\D|\w|\W|\s|\S]{0,256}\/[\d|\D|\w|\W|\s|\S]{0,256}\.(php|txt|sh|pl|py|bin|exe|bat|scr|vbs|html?)" "phase:2,pass,id:77106, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains file:///etc/passwd" "phase:2,pass,id:77001 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains file:///etc/passwd" "phase:2,pass,id:77001, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains file:///c:/windows" "phase:2,pass,id:77002 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains file:///c:/windows" "phase:2,pass,id:77002, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains file:///c:/boot.ini" "phase:2,pass,id:77003 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains file:///c:/boot.ini" "phase:2,pass,id:77003, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx /proc/self/(environ|loginuid)" "phase:2,pass,id:77004 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx /proc/self/(environ|loginuid)" "phase:2,pass,id:77004, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains ../boot.ini" "phase:2,pass,id:77005 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains ../boot.ini" "phase:2,pass,id:77005, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains phpinfo()" "phase:2,pass,id:77006 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains phpinfo()" "phase:2,pass,id:77006, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains /bin/sh" "phase:2,pass,id:77007 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains /bin/sh" "phase:2,pass,id:77007, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains /bin/bash" "phase:2,pass,id:77008 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains /bin/bash" "phase:2,pass,id:77008, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains /etc/passwd" "phase:2,pass,id:77009 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains /etc/passwd" "phase:2,pass,id:77009, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains cmd.exe" "phase:2,pass,id:77010 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains cmd.exe" "phase:2,pass,id:77010, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@contains expect://" "phase:2,pass,id:77011 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@contains expect://" "phase:2,pass,id:77011, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule REQUEST_BODY \
- "@rx href=['|\"]expect:\/\/" "phase:2,pass,id:77012 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx href=['|\"]expect:\/\/" "phase:2,pass,id:77012, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule REQUEST_BODY \
- "@rx expect:\/\/(curl|wget|nc)" "phase:2,pass,id:77013 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx expect:\/\/(curl|wget|nc)" "phase:2,pass,id:77013, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx \.git\/(config|description|head|index|logs\/head)" "phase:2,pass,id:77014 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx \.git\/(config|description|head|index|logs\/head)" "phase:2,pass,id:77014, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx _execute\(('|\")" "phase:2,pass,id:77015 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx _execute\(('|\")" "phase:2,pass,id:77015, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx get_user_file[\d|\D|\w|\W|\s|\S]{0,4}\([\d|\D|\w|\W|\s|\S]{0,4}[\"|'](c:|\/etc\/)" "phase:2,pass,id:77016 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx get_user_file[\d|\D|\w|\W|\s|\S]{0,4}\([\d|\D|\w|\W|\s|\S]{0,4}[\"|'](c:|\/etc\/)" "phase:2,pass,id:77016, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx (\.\.\/[\d|\D|\w|\W|\s|\S]{0,256}((\.ini)|(\.cfg)|(\.conf)))" "phase:2,pass,id:77017 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx (\.\.\/[\d|\D|\w|\W|\s|\S]{0,256}((\.ini)|(\.cfg)|(\.conf)))" "phase:2,pass,id:77017, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx (require[\d|\D|\w|\W|\s|\S]{0,16}(['|\"][\d|\D|\w|\W|\s|\S]{0,16}child_process[\d|\D|\w|\W|\s|\S]{0,16}['|\"][\d|\D|\w|\W|\s|\S]{0,16})[\d|\D|\w|\W|\s|\S]{0,16}\.[\d|\D|\w|\W|\s|\S]{0,16}exec[\d|\D|\w|\W|\s|\S]{0,16}\()" "phase:2,pass,id:77018 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx (require[\d|\D|\w|\W|\s|\S]{0,16}(['|\"][\d|\D|\w|\W|\s|\S]{0,16}child_process[\d|\D|\w|\W|\s|\S]{0,16}['|\"][\d|\D|\w|\W|\s|\S]{0,16})[\d|\D|\w|\W|\s|\S]{0,16}\.[\d|\D|\w|\W|\s|\S]{0,16}exec[\d|\D|\w|\W|\s|\S]{0,16}\()" "phase:2,pass,id:77018, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx (require[\d|\D|\w|\W|\s|\S]{0,16}([\d|\D|\w|\W|\s|\S]{0,16}['|\"][\d|\D|\w|\W|\s|\S]{0,16}fs[\d|\D|\w|\W|\s|\S]{0,16}['|\"][\d|\D|\w|\W|\s|\S]{0,16})[\d|\D|\w|\W|\s|\S]{0,16}\.[\d|\D|\w|\W|\s|\S]{0,16}readdirsync[\d|\D|\w|\W|\s|\S]{0,16}\()" "phase:2,pass,id:77019 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx (require[\d|\D|\w|\W|\s|\S]{0,16}([\d|\D|\w|\W|\s|\S]{0,16}['|\"][\d|\D|\w|\W|\s|\S]{0,16}fs[\d|\D|\w|\W|\s|\S]{0,16}['|\"][\d|\D|\w|\W|\s|\S]{0,16})[\d|\D|\w|\W|\s|\S]{0,16}\.[\d|\D|\w|\W|\s|\S]{0,16}readdirsync[\d|\D|\w|\W|\s|\S]{0,16}\()" "phase:2,pass,id:77019, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx python[\d|\D|\w|\W|\s|\S]{0,8}\/object[\d|\D|\w|\W|\s|\S]{0,8}\/apply[\d|\D|\w|\W|\s|\S]{0,8}:[\d|\D|\w|\W|\s|\S]{0,8}:[\d|\D|\w|\W|\s|\S]{0,8}subprocess[\d|\D|\w|\W|\s|\S]{0,8}\.[\d|\D|\w|\W|\s|\S]{0,8}check_output" "phase:2,pass,id:77020 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx python[\d|\D|\w|\W|\s|\S]{0,8}\/object[\d|\D|\w|\W|\s|\S]{0,8}\/apply[\d|\D|\w|\W|\s|\S]{0,8}:[\d|\D|\w|\W|\s|\S]{0,8}:[\d|\D|\w|\W|\s|\S]{0,8}subprocess[\d|\D|\w|\W|\s|\S]{0,8}\.[\d|\D|\w|\W|\s|\S]{0,8}check_output" "phase:2,pass,id:77020, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx {[\d|\D|\w|\W|\s|\S]{0,8}self[\d|\D|\w|\W|\s|\S]{0,8}:[\d|\D|\w|\W|\s|\S]{0,8}:[\d|\D|\w|\W|\s|\S]{0,8}getstreamvariable[\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,8}['|\"][\d|\D|\w|\W|\s|\S]{0,8}file[\d|\D|\w|\W|\s|\S]{0,8}:[\d|\D|\w|\W|\s|\S]{0,256}\/\/" "phase:2,pass,id:77021 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx {[\d|\D|\w|\W|\s|\S]{0,8}self[\d|\D|\w|\W|\s|\S]{0,8}:[\d|\D|\w|\W|\s|\S]{0,8}:[\d|\D|\w|\W|\s|\S]{0,8}getstreamvariable[\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,8}['|\"][\d|\D|\w|\W|\s|\S]{0,8}file[\d|\D|\w|\W|\s|\S]{0,8}:[\d|\D|\w|\W|\s|\S]{0,256}\/\/" "phase:2,pass,id:77021, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx exec[\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,8}eval[\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,8}str[\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,8}_[\d|\D|\w|\W|\s|\S]{0,8}_[\d|\D|\w|\W|\s|\S]{0,8}import[\d|\D|\w|\W|\s|\S]{0,8}_[\d|\D|\w|\W|\s|\S]{0,8}_[\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,8}['|\"][\d|\D|\w|\W|\s|\S]{0,8}base64[\d|\D|\w|\W|\s|\S]{0,8}['|\"][\d|\D|\w|\W|\s|\S]{0,8}\)" "phase:2,pass,id:77022 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx exec[\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,8}eval[\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,8}str[\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,8}_[\d|\D|\w|\W|\s|\S]{0,8}_[\d|\D|\w|\W|\s|\S]{0,8}import[\d|\D|\w|\W|\s|\S]{0,8}_[\d|\D|\w|\W|\s|\S]{0,8}_[\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,8}['|\"][\d|\D|\w|\W|\s|\S]{0,8}base64[\d|\D|\w|\W|\s|\S]{0,8}['|\"][\d|\D|\w|\W|\s|\S]{0,8}\)" "phase:2,pass,id:77022, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx php:\/\/filter\/[\d|\D|\w|\W|\s|\S]{0,256}((\/etc\/passwd)|(boot.ini)|(windows)|(\.cfg)|(\.conf))" "phase:2,pass,id:77023 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx php:\/\/filter\/[\d|\D|\w|\W|\s|\S]{0,256}((\/etc\/passwd)|(boot.ini)|(windows)|(\.cfg)|(\.conf))" "phase:2,pass,id:77023, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx shell_exec[\d|\D|\w|\W|\s|\S]{0,8}\(.*[\'|\"].*[\'|\"].*\)[\d|\D|\w|\W|\s|\S]{0,8};" "phase:2,pass,id:77024 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx shell_exec[\d|\D|\w|\W|\s|\S]{0,8}\(.*[\'|\"].*[\'|\"].*\)[\d|\D|\w|\W|\s|\S]{0,8};" "phase:2,pass,id:77024, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx exec[\d|\D|\w|\W|\s|\S]{0,6}\([\d|\D|\w|\W|\s|\S]{0,20}[\'|\"].*[\'|\"].*\)[\d|\D|\w|\W|\s|\S]{0,8};" "phase:2,pass,id:77025 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx exec[\d|\D|\w|\W|\s|\S]{0,6}\([\d|\D|\w|\W|\s|\S]{0,20}[\'|\"].*[\'|\"].*\)[\d|\D|\w|\W|\s|\S]{0,8};" "phase:2,pass,id:77025, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx php[\d|\D|\w|\W|\s|\S]{0,32}exec[\d|\D|\w|\W|\s|\S]{0,12}\(.*[\'|\"].*[\'|\"].*\)[\d|\D|\w|\W|\s|\S]{0,12};" "phase:2,pass,id:77026 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx php[\d|\D|\w|\W|\s|\S]{0,32}exec[\d|\D|\w|\W|\s|\S]{0,12}\(.*[\'|\"].*[\'|\"].*\)[\d|\D|\w|\W|\s|\S]{0,12};" "phase:2,pass,id:77026, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx system[\d|\D|\w|\W|\s|\S]{0,6}\([\d|\D|\w|\W|\s|\S]{0,12}[\'|\"].*[\'|\"][\d|\D|\w|\W|\s|\S]{0,12}\)[\d|\D|\w|\W|\s|\S]{0,6};" "phase:2,pass,id:77027 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx system[\d|\D|\w|\W|\s|\S]{0,6}\([\d|\D|\w|\W|\s|\S]{0,12}[\'|\"].*[\'|\"][\d|\D|\w|\W|\s|\S]{0,12}\)[\d|\D|\w|\W|\s|\S]{0,6};" "phase:2,pass,id:77027, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx eval[\d|\D|\w|\W|\s|\S]{0,6}\([\d|\D|\w|\W|\s|\S]{0,6}[\'|\"].*[\'|\"][\d|\D|\w|\W|\s|\S]{0,6}\)[\d|\D|\w|\W|\s|\S]{0,6};" "phase:2,pass,id:77110 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx eval[\d|\D|\w|\W|\s|\S]{0,6}\([\d|\D|\w|\W|\s|\S]{0,6}[\'|\"].*[\'|\"][\d|\D|\w|\W|\s|\S]{0,6}\)[\d|\D|\w|\W|\s|\S]{0,6};" "phase:2,pass,id:77110, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx passthru[\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,32}[\'|\"].*[\'|\"][\d|\D|\w|\W|\s|\S]{0,32}\)[\d|\D|\w|\W|\s|\S]{0,8};" "phase:2,pass,id:77028 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx passthru[\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,32}[\'|\"].*[\'|\"][\d|\D|\w|\W|\s|\S]{0,32}\)[\d|\D|\w|\W|\s|\S]{0,8};" "phase:2,pass,id:77028, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx ([\t|\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~]|^)popen[\t|\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,32}[\'|\"].*[\'|\"][\d|\D|\w|\W|\s|\S]{0,32}\)[\d|\D|\w|\W|\s|\S]{0,8};" "phase:2,pass,id:77029 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx ([\t|\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~]|^)popen[\t|\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,32}[\'|\"].*[\'|\"][\d|\D|\w|\W|\s|\S]{0,32}\)[\d|\D|\w|\W|\s|\S]{0,8};" "phase:2,pass,id:77029, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx nc[ |+|%|\{|\$][\d|\D|\w|\W|\s|\S]{0,12}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)[\d|\D|\w|\W|\s|\S]{0,12}[0-9]" "phase:2,pass,id:77030 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx nc[ |+|%|\{|\$][\d|\D|\w|\W|\s|\S]{0,12}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)[\d|\D|\w|\W|\s|\S]{0,12}[0-9]" "phase:2,pass,id:77030, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx wget[ |+|%|\{|\$][\d|\D|\w|\W|\s|\S]{0,12}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" "phase:2,pass,id:77031 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx wget[ |+|%|\{|\$][\d|\D|\w|\W|\s|\S]{0,12}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" "phase:2,pass,id:77031, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx curl[ |+|%|\{|\$][\d|\D|\w|\W|\s|\S]{0,12}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" "phase:2,pass,id:77032 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx curl[ |+|%|\{|\$][\d|\D|\w|\W|\s|\S]{0,12}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" "phase:2,pass,id:77032, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx nc[ |+|%|\{|\$][\d|\D|\w|\W|\s|\S]{0,12}(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}[\d|\D|\w|\W|\s|\S]{0,12}[0-9]" "phase:2,pass,id:77107 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx nc[ |+|%|\{|\$][\d|\D|\w|\W|\s|\S]{0,12}(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}[\d|\D|\w|\W|\s|\S]{0,12}[0-9]" "phase:2,pass,id:77107, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx wget[ |+|%|\{|\$][\d|\D|\w|\W|\s|\S]{0,12}(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}" "phase:2,pass,id:77108 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx wget[ |+|%|\{|\$][\d|\D|\w|\W|\s|\S]{0,12}(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}" "phase:2,pass,id:77108, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx curl[ |+|%|\{|\$][\d|\D|\w|\W|\s|\S]{0,12}(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}" "phase:2,pass,id:77109 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx curl[ |+|%|\{|\$][\d|\D|\w|\W|\s|\S]{0,12}(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}" "phase:2,pass,id:77109, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx {php}.*;{\/php}" "phase:2,pass,id:77033 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx {php}.*;{\/php}" "phase:2,pass,id:77033, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx import[\t|\d|\D|\w|\W|\s|\S]{0,16}os[\d|\D|\w|\W|\s|\S]{0,16}=[\d|\D|\w|\W|\s|\S]{0,16}os[\d|\D|\w|\W|\s|\S]{0,16}\.[\d|\D|\w|\W|\s|\S]{0,16}popen[\d|\D|\w|\W|\s|\S]{0,16}\([\d|\D|\w|\W|\s|\S]{0,64}\.[\d|\D|\w|\W|\s|\S]{0,12}read" "phase:2,pass,id:77034 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx import[\t|\d|\D|\w|\W|\s|\S]{0,16}os[\d|\D|\w|\W|\s|\S]{0,16}=[\d|\D|\w|\W|\s|\S]{0,16}os[\d|\D|\w|\W|\s|\S]{0,16}\.[\d|\D|\w|\W|\s|\S]{0,16}popen[\d|\D|\w|\W|\s|\S]{0,16}\([\d|\D|\w|\W|\s|\S]{0,64}\.[\d|\D|\w|\W|\s|\S]{0,12}read" "phase:2,pass,id:77034, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx \/dev\/tcp.*(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" "phase:2,pass,id:77035 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx \/dev\/tcp.*(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" "phase:2,pass,id:77035, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx \/dev\/tcp.*(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}" "phase:2,pass,id:77735 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx \/dev\/tcp.*(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}" "phase:2,pass,id:77735, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx \/dev\/tcp\/[0-9]{8}" "phase:2,pass,id:77036 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx \/dev\/tcp\/[0-9]{8}" "phase:2,pass,id:77036, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx wp-config\.php(~|\.bak|\.suspected|\.swp)" "phase:2,pass,id:77038 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx wp-config\.php(~|\.bak|\.suspected|\.swp)" "phase:2,pass,id:77038, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule REQUEST_URI \
- "@rx \/wp\-content\/uploads\/.*\.php($|[^a-z0-9|_|-|\.])" "phase:2,pass,id:77039 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx \/wp\-content\/uploads\/.*\.php($|[^a-z0-9|_|-|\.])" "phase:2,pass,id:77039, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule REQUEST_URI \
- "@rx ([\t|\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9|a|b|c|d|e|f]|^)perl[^\.][\d|\D|\w|\W|\s|\S]{0,256}\.pl" "phase:2,pass,id:77040 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx ([\t|\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9|a|b|c|d|e|f]|^)perl[^\.][\d|\D|\w|\W|\s|\S]{0,256}\.pl" "phase:2,pass,id:77040, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule REQUEST_URI \
- "@rx (\%3c|<)\?php([\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9]|^)" "phase:2,pass,id:77041 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx (\%3c|<)\?php([\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9]|^)" "phase:2,pass,id:77041, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
-"@rx ([\t|\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9|a|b|c|d|e|f]|^)base64_decode[\d|\D|\w|\W|\s|\S]{0,8}\(" "phase:2,pass,id:77042 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+"@rx ([\t|\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9|a|b|c|d|e|f]|^)base64_decode[\d|\D|\w|\W|\s|\S]{0,8}\(" "phase:2,pass,id:77042, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
-"@rx ([\t|\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9|a|b|c|d|e|f]|^)proc_open[\d|\D|\w|\W|\s|\S]{0,8}\(" "phase:2,pass,id:77043 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+"@rx ([\t|\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9|a|b|c|d|e|f]|^)proc_open[\d|\D|\w|\W|\s|\S]{0,8}\(" "phase:2,pass,id:77043, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
-"@rx ([\t|\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9|a|b|c|d|e|f]|^)(curl_exec|curl_multi_exec)[\d|\D|\w|\W|\s|\S]{0,8}\(" "phase:2,pass,id:77044 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+"@rx ([\t|\-|<|>|:|,|\.|{|#|@|\[|\]|\^|\?|%|&|\*|(|)|}|\/|\\|!|\"|'|=|;| |+|$|`|\~|0-9|a|b|c|d|e|f]|^)(curl_exec|curl_multi_exec)[\d|\D|\w|\W|\s|\S]{0,8}\(" "phase:2,pass,id:77044, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 
 SecRule ARGS_GET|ARGS_GET_NAMES|REQUEST_FILENAME|ARGS_POST|ARGS_POST_NAMES|REQUEST_BODY|REQUEST_COOKIES|REQUEST_COOKIES_NAMES \
- "@rx file_put_contents[\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,32},.*[\d|\D|\w|\W|\s|\S]{0,32}\)[\d|\D|\w|\W|\s|\S]{0,8};" "phase:2,pass,id:77045 \
- t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls \
+ "@rx file_put_contents[\d|\D|\w|\W|\s|\S]{0,8}\([\d|\D|\w|\W|\s|\S]{0,32},.*[\d|\D|\w|\W|\s|\S]{0,32}\)[\d|\D|\w|\W|\s|\S]{0,8};" "phase:2,pass,id:77045, \
+ t:lowercase,t:compressWhitespace,t:escapeSeqDecode,t:htmlEntityDecode,t:removeNulls, \
  setvar:TX.score=+24"
 
 #
 
 SecRule TX:score "@ge 24" \
- "id:87999,phase:2,deny,log,msg:'Not Acceptable' \
+ "id:87999,phase:2,deny,log,msg:'Not Acceptable', \
  setvar:!TX.score"
